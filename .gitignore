@@ -30,3 +30,8 @@
 # Video files
 *.avi
 *.mp4
+
+#folders
+leptonica/
+kmeans/
+
