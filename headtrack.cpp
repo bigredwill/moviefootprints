@@ -14,6 +14,8 @@ int main(int argc, char const *argv[])
 {
 
 	std::string clipname = "video.mp4";
+    std::string imagename = "";
+
 	cout << clipname << endl;
 
 	VideoCapture cap(clipname);
@@ -27,18 +29,29 @@ int main(int argc, char const *argv[])
     cout << "video height: " << cap.get(CV_CAP_PROP_FRAME_WIDTH) << endl;
 	cout << "video width: "  << cap.get(CV_CAP_PROP_FRAME_HEIGHT) << endl;
 
+    cout << "video FPS: "  << cap.get(CV_CAP_PROP_FPS) << endl;
+
     //get amount of frames in video
 	int fcount = (int)cap.get(CV_CAP_PROP_FRAME_COUNT);
 	cout << "frame count: " << fcount << endl;
 
 	Mat frame;
+    Mat hsl;
+    Mat src;
     for(int i = 0; i < fcount; i++) {
         //read in frame from video
     	cap >> frame;
 
+        // cvtColor(frame,src,CV_RGBA2RGB);
+        // cvtColor(frame, hsl, CV_BGR2Lab);
+        cvtColor(frame, hsl, CV_BGR2Lab);
+        cvtColor(frame, src, CV_YCrCb2BGR);
+        
+        imshow("lab", hsl);
+        imshow("vid", src);
         //to avoid 0x0 frame error
-		if (!frame.empty())
-	    	imshow("footprint",frame);
+		// if (!frame.empty())
+	 //    	imshow("footprint",frame);
     	
     	char key = (char) waitKey('q');
     	if(key == 'q')  break;
