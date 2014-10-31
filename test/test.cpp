@@ -120,10 +120,7 @@ TestImage(const char *filename, l_int32 i, int quantN, string outputFolder) {
 
      
 
-        /* Quantize to fully populated octree (RGB) at given level */
-    // pixSaveTiled(pixs, pixa, 1.0, 1, SPACE, 0);
-    pixc = pixFixedOctcubeQuantGenRGB(pixs, 4);  /* level 4 */
-    PixSave32(pixa, pixc, quantN, "pixFixedOctcubeQuantGenRGB");
+
 
         /* Generate 32 bpp RGB image with num colors <= 256 */
     pixt = pixOctreeQuantNumColors(pixs, quantN, 0);   /* cmapped version */
@@ -192,17 +189,17 @@ PixSave32(PIXA *pixa, PIX *pixc, int quantN, string outputName)
 
     for (int i = 0; i < number; i++)
     {
-        pixcmapGetColor(map,i,&red, &green, &blue);
-        cout << "r: " << red;
-        cout << " g: " << green;
-        cout << " b:  " << blue;
-        cout << endl;
+        // pixcmapGetColor(map,i,&red, &green, &blue);
+        // cout << "r: " << red;
+        // cout << " g: " << green;
+        // cout << " b:  " << blue;
+        // cout << endl;
 
-        pixcmapGetColor(map,i,&colors[0], &colors[1], &colors[2]);
-        cout << "r: " << colors[0];
-        cout << " g: " << colors[1];
-        cout << " b:  " << colors[2];
-        cout << endl;
+        // pixcmapGetColor(map,i,&colors[0], &colors[1], &colors[2]);
+        // cout << "r: " << colors[0];
+        // cout << " g: " << colors[1];
+        // cout << " b:  " << colors[2];
+        // cout << endl;
 
 
 
@@ -211,10 +208,6 @@ PixSave32(PIXA *pixa, PIX *pixc, int quantN, string outputName)
         colors[1] = cta[i].green;
         colors[2] = cta[i].blue;
 
-        cout << "r: " << colors[0];
-        cout << " g: " << colors[1];
-        cout << " b:  " << colors[2];
-        cout << endl;
 
 
     }
@@ -231,7 +224,6 @@ PixSave32(PIXA *pixa, PIX *pixc, int quantN, string outputName)
     cout << &pixc << "   " << &pix32 << "   " << &map << endl;
 
     pixWriteJpeg(output.c_str(),pix32,90,1);
-    pixWriteJpeg("wut.png",pix32,90,1);
     pixDestroy(&pixc);
     pixDestroy(&pix32);
 
