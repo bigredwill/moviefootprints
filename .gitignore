@@ -40,6 +40,8 @@ json/
 old/
 output/
 visualize/
+test/
+assets/
 
 #old files
 *.old
