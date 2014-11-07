@@ -27,11 +27,19 @@
 *.out
 *.app
 
-# Video files
+# Video/Img files
 *.avi
 *.mp4
+*.jpg
+*.png
 
 #folders
 leptonica/
 kmeans/
+json/
+old/
+output/
+visualize/
 
+#old files
+*.old

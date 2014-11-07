@@ -114,6 +114,7 @@ TestImage(const char *filename, l_int32 i, int quantN, string outputFolder) {
         /* 2-pass octree quantizer */
     pixSaveTiled(pixs, pixa, 1.0, 1, SPACE, 0);
     pixc = pixOctreeColorQuant(pixs, 128, 0);  /* no dither */
+    //this one
     PixSave32(pixa, pixc, quantN, "pixOctreeColorQuantNoDither");
     pixc = pixOctreeColorQuant(pixs, 128, 1);  /* dither */
     PixSave32(pixa, pixc, quantN, "pixOctreeColorQuantDither");
@@ -127,6 +128,7 @@ TestImage(const char *filename, l_int32 i, int quantN, string outputFolder) {
     pix32 = pixRemoveColormap(pixt, REMOVE_CMAP_BASED_ON_SRC);
 
         /* Quantize image with few colors at fixed octree leaf level */
+    //or dis one
     pixSaveTiled(pixt, pixa, 1.0, 1, SPACE, 0);
     pixc = pixFewColorsOctcubeQuant1(pix32, 4);   /* level 4 */
     PixSave32(pixa, pixc, quantN, "pixFewColorsOctcubeQuant1");
@@ -189,27 +191,12 @@ PixSave32(PIXA *pixa, PIX *pixc, int quantN, string outputName)
 
     for (int i = 0; i < number; i++)
     {
-        // pixcmapGetColor(map,i,&red, &green, &blue);
-        // cout << "r: " << red;
-        // cout << " g: " << green;
-        // cout << " b:  " << blue;
-        // cout << endl;
-
-        // pixcmapGetColor(map,i,&colors[0], &colors[1], &colors[2]);
-        // cout << "r: " << colors[0];
-        // cout << " g: " << colors[1];
-        // cout << " b:  " << colors[2];
-        // cout << endl;
-
-
-
         cta = (RGBA_QUAD *)map->array;
         colors[0] = cta[i].red;
         colors[1] = cta[i].green;
         colors[2] = cta[i].blue;
 
-
-
+        cout << "r: " << colors[0] << "g: " << colors[1] << "b: " << colors[2] << endl;
     }
 
     cout << output.size()<<endl;
