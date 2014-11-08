@@ -1,0 +1,8 @@
+#canvas-container {
+	display: block;
+	position: absolute;
+	width: 90%;
+	height: 80%;
+
+	margin: 3% 3%;
+}

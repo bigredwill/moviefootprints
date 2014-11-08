@@ -24,7 +24,7 @@ Mat getRGBHistogram(Mat src);
 Value getNMostColors(int numColors);
 
 
-int main(int    argc, char **argv)
+int main(int argc, char **argv)
 {
 
 
@@ -99,34 +99,22 @@ int main(int    argc, char **argv)
     double duration;
     start = std::clock();
 
-    // for(int i = 0; i < 400; i++) {
-    //     cap >> frame;
-    //     if (!frame.empty()){
-    //        if(i% (movie["fps"].asInt()) == 0) {
-    //            bhQuantizeImage(&frame, &frame, quantN);
-    //            footprint.append(getRGBColors(frame, i));
-    //        }
-    //     }        
-    // }
-    int count = 0;
-    int writeInterval = 5; //5 minutes
 
     ofstream ofs(outputName,ofstream::out);
 
 
-
+    int writeInterval = (movie["fps"].asInt());
     for(int i = 0; i < movie["framecount"].asInt(); i++) {
         cap >> frame;
         if (!frame.empty()){
-           if(i % (movie["fps"].asInt()) == 0) {
+           if(i % writeInterval == 0) {
                bhQuantizeImage(&frame, &frame, quantN, i);
-               // footprint.append(getRGBColors(&frame, i));
                cout << i << " " << endl; 
            }
 
         } else {
-            cout << "something went wrong" << endl;
-            return -1;
+            cout << "frame empty" << endl;
+            break;
         }
         
     }
