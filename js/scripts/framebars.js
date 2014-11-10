@@ -4,7 +4,12 @@
 
 
 
-require(["json!../assets/spiritedaway_1.json"], function(j) { 
+// require(["json!../assets/spiritedaway_1.json"], function(j) { 
+// require(["json!../assets/a_new_hope_1.json"], function(j) { 
+// require(["json!../assets/the_empire_strikes_back_1.json"], function(j) { 
+// require(["json!../assets/starwars v-iv/returnofthejedi_1.json"], function(j) { 
+// require(["json!../assets/lifeaquaticfucker.json"], function(j) { 
+	require(["json!../assets/apocalypsefucker.json"], function(j) { 
 	bars(j);
 });
 
@@ -45,7 +50,7 @@ var bars = function(data) {
 			for(var i = 0; i < inFrame.length; i++) {
 				clrs[i] = inFrame[i].getAttribute("fill");
 			}
-			displayFrameColors(_class, clrs);
+			// displayFrameColors(_class, clrs, paper);
 
 		});
 	}
@@ -56,13 +61,43 @@ var bars = function(data) {
 
 }
 
-var displayFrameColors = function(frameN, clrs) {
+var displayFrameColors = function(frameN, clrs, paper) {
 
 	var spacing = 20;
 	var width = 40;
 	var height = 60;
 
-	
+	var xStep = window.innerWidth/clrs.length;
+	var yStep = window.innerHeight/spacing;
+
+	var x = xStep;
+	var y = window.innerHeight/2 - height/2;
+
+	var st = paper.set();
+
+	for (var i = 0; i < clrs.length; i++) {
+		var nR = paper.rect(x,y,width,height);
+		nR.attr("fill", clrs[i]);
+		nR.attr("stroke", "rgb(220,220,220)");
+		nR.node.setAttribute("class","displayFrame"+frameN);
+		st.push(nR);
+		if((x + xStep + width + spacing) >= window.innerWidth){
+			x = xStep;
+			y += yStep;
+		} else {
+			x += xStep + spacing + width;
+		}
+	};
+	st.mousedown(function(e) {
+		var target = e.target;
+		var _class = target.attributes.class.value;
+		var inFrame = document.getElementsByClassName(_class);
+
+		for(var i = 0; i < inFrame.length; i++){
+			debugger;
+		}
+	});
+
 
 }
 

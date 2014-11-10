@@ -101,9 +101,9 @@ int main(int argc, char **argv)
 
 
     ofstream ofs(outputName,ofstream::out);
-
-
     int writeInterval = (movie["fps"].asInt());
+
+    int emptyFrames = 0;
     for(int i = 0; i < movie["framecount"].asInt(); i++) {
         cap >> frame;
         if (!frame.empty()){
@@ -113,8 +113,13 @@ int main(int argc, char **argv)
            }
 
         } else {
-            cout << "frame empty" << endl;
-            break;
+            if(emptyFrames == 10) {
+                cout << "frame empty" << endl;
+                break;
+            }
+            emptyFrames++;
+            cout << emptyFrames << endl;
+
         }
         
     }

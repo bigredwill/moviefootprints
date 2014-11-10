@@ -20,7 +20,7 @@ requirejs(['raphael-min'], function(){
 		height = window.innerHeight;
 	var lpaper = Raphael(0,0,width,height);
 
-	var txt = lpaper.text(width/2,height/2,"loading");	
+	var txt = lpaper.text(width/2,height,"loading");	
 	txt.animate({"y":((height/2)-200)},8000,"elastic");
 
 });
