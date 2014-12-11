@@ -15,14 +15,8 @@ requirejs.config({
 // Start loading the main app file. Put all of
 // your application logic in there.
 requirejs(['raphael-min'], function(){
-	var loader = document.getElementById('loader');
-	var width = window.innerWidth,
-		height = window.innerHeight;
-	var lpaper = Raphael(0,0,width,height);
-
-	var txt = lpaper.text(width/2,height,"loading");	
-	txt.animate({"y":((height/2)-200)},8000,"elastic");
-
+	var ldr = document.getElementById('loader');
+	ldr.innerhtml = "loading";
 });
 requirejs(['scripts/framebars']);
 

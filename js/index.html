@@ -9,7 +9,11 @@
         <script data-main="app" src="lib/require/require.js"></script>
     </head>
     <body>
+        <select onChange = "createBars(this.options[this.selectedIndex].value)">
+            <option>Choose a movie</option>
+            <option  id = "opt-spirit" value = "SA" >Spirited Away</option>
 
+        </select>
 
     	<div id = "loader"></div>
     </body>

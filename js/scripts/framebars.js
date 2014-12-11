@@ -4,14 +4,23 @@
 
 
 
-// require(["json!../assets/spiritedaway_1.json"], function(j) { 
-// require(["json!../assets/a_new_hope_1.json"], function(j) { 
-// require(["json!../assets/the_empire_strikes_back_1.json"], function(j) { 
-// require(["json!../assets/starwars v-iv/returnofthejedi_1.json"], function(j) { 
-// require(["json!../assets/lifeaquaticfucker.json"], function(j) { 
-	require(["json!../assets/apocalypsefucker.json"], function(j) { 
-	bars(j);
-});
+
+
+var createBars = function(name) {
+	console.log(name);
+	if(name==="SA"){
+		require(["json!../assets/spiritedaway_1.json"], function(j) { 
+	// require(["json!../assets/a_new_hope_1.json"], function(j) { 
+	// require(["json!../assets/the_empire_strikes_back_1.json"], function(j) { 
+	// require(["json!../assets/starwars v-iv/returnofthejedi_1.json"], function(j) { 
+	// require(["json!../assets/lifeaquaticfucker.json"], function(j) { 
+	// require(["json!../assets/apocalypsefucker.json"], function(j) { 
+	// require(["json!../assets/rushmore.json"], function(j) { 		
+		bars(j);
+		});
+	}
+}
+
 
 var bars = function(data) {
 
@@ -21,9 +30,10 @@ var bars = function(data) {
 		barWidth = 2,
 		barHeight = 100;
 		barSpacing = 2;
+	
 
-	var paper = Raphael(0,0,frames.length,1000);
-
+	var paper = Raphael(0,0,frames.length*barWidth,1000);
+	var barSet = paper.set();
 	var makeBar = function(colors, x, fnum) {
 		
 		var st = paper.set(); //to interact with individual bars
@@ -38,8 +48,8 @@ var bars = function(data) {
 			nR.node.setAttribute("class","frame-"+fnum);
 			prevY += colors[i].amount;
 			st.push(nR);
-		}
 
+		}
 
 		st.mousedown(function(d) {
 			var target = d.target;
@@ -50,15 +60,36 @@ var bars = function(data) {
 			for(var i = 0; i < inFrame.length; i++) {
 				clrs[i] = inFrame[i].getAttribute("fill");
 			}
-			// displayFrameColors(_class, clrs, paper);
+			displayColorGrid(_class, clrs);
+
 
 		});
+
+		barSet.push(st);
 	}
 	
 	for(var i in frames) {
-		makeBar(frames[i],Number(i) + Number(barSpacing) + Number(barWidth), i);
+
+		 makeBar(frames[i],Number(i) + Number(barSpacing) + Number(barWidth), i);
+		 console.log(i);
 	}
 
+}
+
+var displayColorGrid = function(frameNum,clrs) {
+	var a = document.getElementById("color-grid");
+	if(a) {
+		var b = document.getElementsByTagName("body")[0];
+		b .removeChild(a);
+	} else {
+		var b = document.getElementsByTagName("body")[0];
+		var grid = document.createElement("div");
+		grid.id = "color-grid";
+		b.appendChild(grid);
+	
+
+
+	}
 }
 
 var displayFrameColors = function(frameN, clrs, paper) {
