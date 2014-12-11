@@ -1,3 +1,6 @@
+#img and json files
+*.svg
+*.json
 # Compiled Object files
 *.slo
 *.lo
